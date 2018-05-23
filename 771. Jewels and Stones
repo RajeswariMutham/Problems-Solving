@@ -14,4 +14,17 @@ public class Solution {
             }
             return count ;
     }
+    public int findMatchOptimum (string J , string S){
+            var inputSet = new HashSet<char>();
+            foreach (char item in J.ToCharArray())
+            {
+                inputSet.Add(item); 
+            }
+            int result = 0;
+            foreach (var item in S.ToCharArray())
+            {
+                if (inputSet.Contains(item)) { result++; }
+            }
+            return result ;
+        }
 }
