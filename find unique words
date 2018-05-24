@@ -1,0 +1,49 @@
+  public static int UniqueMorseRepresentations(string[] words)
+        {
+            var listOfAlpha = new string[] { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
+            var listofChars = new string[] { ".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--.." };
+
+          
+
+         var dicOfValues = new Dictionary<string, string>();
+            for (int i = 0; i < listOfAlpha.Length ; i++)
+            {
+                dicOfValues.Add(listOfAlpha[i].ToLower() , listofChars[i]);
+            }
+
+            //find transformedword 
+            var listOfTransformedWords = new List<string>();
+
+            foreach (var item in words)
+            {
+                listOfTransformedWords.Add(FindTransformedword(dicOfValues, item));  
+            }
+
+            foreach (var item in listOfTransformedWords )
+            {
+                Console.WriteLine(item );
+            }
+            //find identical strings
+
+            var resul = listOfTransformedWords.GroupBy(x => x).Count();
+            //.Where(g => g.Count() > 1).Count();
+            Console.WriteLine(resul);
+
+          var result=  (listOfTransformedWords.Count > 1)? resul: listOfTransformedWords.Count   ;
+            return resul;
+        }
+
+        public static string FindTransformedword(Dictionary<string,string> dic, string word)
+        {
+            string result = "";
+            var words= word.ToCharArray(); 
+
+            for (int i = 0; i < word.ToCharArray().Length  ; i++)
+            {
+                var cha = words[i] ; 
+                result = result + dic[cha.ToString() ] ;
+            }
+
+            return result; 
+        }
+        
