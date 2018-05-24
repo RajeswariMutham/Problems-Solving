@@ -14,3 +14,10 @@ public class Solution {
 //B = [50, 12, 32, 46, 28]
 // We should return
 //[1, 4, 3, 2, 0]
+ static int[] AnagramMappingsLinq(int[] A, int[] B)
+        {
+            
+            return (from a in A select Array.IndexOf(B, a)).ToArray();
+
+
+        }
