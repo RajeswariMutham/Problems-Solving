@@ -1,0 +1,18 @@
+public static int Fib(int n)
+    {
+        // Compute the nth Fibonacci number
+         if (n < 0) throw new ArgumentException("exception");
+          if (n==0 || n==1) return n;
+            int previousVal=0,  currentVal=0,result =0;
+            for (int i = 1; i <= n-1; i++)
+            {
+                if (i == 1 ){
+                    currentVal = 1;
+                    previousVal = 0;
+                }
+                result = currentVal + previousVal;
+                previousVal = currentVal;
+                currentVal = result;
+            }
+            return currentVal ;
+    }
