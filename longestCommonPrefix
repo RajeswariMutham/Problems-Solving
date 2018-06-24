@@ -1,0 +1,58 @@
+ public static string LongestCommonPrefix1(string[] strs)
+        {
+            string match = string.Empty;
+            if (strs.Length <= 0 ) return "";
+            if (strs.Length == 1) return strs[0].ToString(); 
+            for (int i = 0; i <= strs.Length - 1; i = i + 2)
+            {
+                var currrentWord = strs[i].ToArray();
+                var nextWord = new char[]{ };
+
+                if (i != strs.Length - 1) // if not last one
+                {
+                    nextWord = strs[i + 1].ToArray();//next
+                }
+                else{
+                    nextWord = strs[0].ToArray() ; //first
+                }
+                if (currrentWord.Equals(nextWord )){ // both are same
+                    string s = new string(currrentWord);
+                    match = s;
+                }
+                else{
+
+                    var tempMatch = string.Empty;
+                    tempMatch = findMatch(currrentWord, nextWord);
+                    if (i==0){
+                        match = tempMatch.ToString();
+                    }
+                   
+                    var result = findMatch(match.ToArray(), tempMatch.ToArray());
+                    match = result;
+
+                }
+
+            }
+            return match.ToString();
+        }
+
+        private static string findMatch(char[] currentWord, char[] nextWord){
+            int k = 0;
+            var tempMatch = new StringBuilder();
+            var s = string.Empty;
+            if (currentWord.Equals(nextWord )) {
+                return currentWord.ToString();
+            }
+            for (int j = 0; j <= currentWord.Length - 1 && k <= nextWord.Length - 1; j++)
+            {
+                if (currentWord[j] != nextWord[k])
+                {
+                    break;
+                }
+                s = s + currentWord[j].ToString();
+                tempMatch.Append(currentWord[j].ToString() );
+                k++;
+            }
+           
+            return s ;
+        }
