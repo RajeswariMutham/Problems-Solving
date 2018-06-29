@@ -1,0 +1,10 @@
+public static bool IsUnique(string input){
+            if (input==string.Empty || input.Length<=1 ) return true ;
+            var uniqueHash = new HashSet<char>();
+            foreach (var chars in input)
+            {
+                if (uniqueHash.Contains(chars)) return false;
+                uniqueHash.Add(chars );
+            }
+            return true;
+        }
