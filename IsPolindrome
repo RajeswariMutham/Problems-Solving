@@ -1,0 +1,15 @@
+//given two strings find if it's polindrom 
+public static bool IsPermutation(string input1, string input2){
+            if (input1.Length != input2.Length) return false;
+            var incrementVal = 0;
+            for (int i = input1.Length-1; i >= 0; i--)
+            {
+                if(input1[i]!=input2[incrementVal]){
+                    return false;
+                }
+                incrementVal++;
+            
+            }
+            return true;
+
+        }
