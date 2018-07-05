@@ -1,0 +1,47 @@
+ public static int[] makeAnagram(string[] a, string[] b)
+       {
+           int[] returnResult = null;
+           if (a.Length == b.Length)
+           {
+               returnResult=new int[a.Length ];
+               for (int i = 0; i < a.Length ; i++)
+               {
+                   var individualCharCount = new int[26];
+                   if (a[i].Length != b[i].Length)
+                   {
+                       returnResult[i]=-1;
+                   }
+                   else
+                   {
+                       for (int chIndex = 0; chIndex < a[i].Length; chIndex++)
+                       {
+                           individualCharCount[a[i][chIndex] - 97]++;
+                       }
+                       for (int chIndex = 0; chIndex < b[i].Length; chIndex++)
+                       {
+                           individualCharCount[b[i][chIndex] - 97]--;
+                       }
+                       var unmatchedCharCount = 0;
+                       for (int index = 0; index < 26; index++)
+                       {
+                           if (individualCharCount[index] > 0)
+                           {
+                               unmatchedCharCount += individualCharCount[index];
+                           }
+                       }
+                       returnResult[i] = unmatchedCharCount;
+                   }
+               }
+           }
+           return returnResult;
+       }
+       
+         [Test]
+        public void makeAnagram_WhenInput_ReturnNoOfCharToDelete()
+        {
+            var a = new string[]{"a","jk","abb","mn","abc"} ;
+            var b = new string[]  {"bb","kj","bbc","op","def"};
+            var outPut = new int[] { -1, 0, 1, 2, 3 };
+            var result = Anagram.makeAnagram2(a, b);
+            Assert.AreEqual(outPut, result);
+        }
