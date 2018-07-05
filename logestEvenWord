@@ -1,0 +1,20 @@
+static string longestEvenWord(string sentence)
+        {
+            var resultToken = "00";
+            if (!string.IsNullOrEmpty(sentence))
+            {
+                var tokens = sentence.Split(' ');
+                var evenMaxTokenLength = 0;
+                var tokenLength = 0;
+                foreach (var token in tokens)
+                {
+                    tokenLength = token.Length;
+                    if (evenMaxTokenLength < tokenLength && tokenLength % 2 == 0)
+                    {
+                        resultToken = token;
+                        evenMaxTokenLength = tokenLength;
+                    }
+                }
+            }
+            return resultToken;
+        }
