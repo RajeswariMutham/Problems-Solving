@@ -1,0 +1,64 @@
+
+        public class prExclass
+        {
+            public int Minute { get; set; }
+            public int Hours { get; set; }
+            public int Seconds { get; set; }
+
+            public void ShowTime()
+            {
+                
+                for (; ; )
+                {
+
+                //  Console.WriteLine(DateTime.Now.ToString());
+                    Console.WriteLine(Hours.ToString().PadLeft(2, '0') + ":" + Minute.ToString().PadLeft(2, '0')+ ":" + Seconds.ToString().PadLeft(2, '0'));
+
+                   Console.WriteLine("\a");
+                    Thread.Sleep(1000);
+                    Console.Clear();
+                    if ((Seconds + 2) > 60)
+                    {
+                        Seconds = 0;
+                        Minute = Minute + 1;
+                    }
+                    else
+                    {
+                        Seconds = Seconds + 2;
+                    }
+                    if (Minute >= 60)
+                    {
+                        Minute = 0;
+                        Hours = Hours + 1;
+                    }
+                    if (Hours >= 24)
+                    {
+                        Hours = 0;
+                    }
+
+                }
+
+            }
+        }
+
+    
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+
+            prExclass PC = new prExclass();
+
+            ThreadStart TS = new ThreadStart(PC.ShowTime);
+
+            Thread t = new Thread(TS);
+
+            t.Start();
+
+            Console.ReadLine();
+
+            Console.ReadLine(); 
+
+        }
+}
